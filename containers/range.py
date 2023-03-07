@@ -30,4 +30,29 @@ def range(a, b=None, c=None):
 
     #hint: think abt when one or multiple of a, b, and c are none
 
+    if c is None:
+        skip = 1
+    else: 
+        skip = c
 
+    if b is None:
+        i = 0
+        while i < a:
+            yield i
+            i += skip
+
+    if b is not None and c is not None:
+        if b > 0 and c < 0:
+            return []
+
+    if b is not None:
+        if b > 0:
+            i = a
+            while i < b:
+                yield i
+                i += skip
+        else:
+            i = a
+            while i > b:
+                yield i
+                i += skip
