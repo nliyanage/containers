@@ -37,7 +37,8 @@ def range(a, b=None, c=None):
     Carefully written C code can be faster than the
     corresponding python code because it can remove some
     of the overhead of this automation process,
-    but the resulting code is much longer and harder to read/write.
+    but the resulting code
+    is much longer and harder to read/write.
     '''
 
     if c is None:
