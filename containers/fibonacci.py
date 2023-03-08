@@ -108,6 +108,6 @@ def fib_yield(n=None):
 
     a, b = 1, 1
     if n is not None:
-        for i in range(1, n+1):
+        for i in range(1, n + 1):
             yield a
             a, b = b, a + b
