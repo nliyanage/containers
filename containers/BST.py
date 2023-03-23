@@ -20,6 +20,8 @@ class BST(BinaryTree):
         then each element of xs needs to be inserted into the BST.
         '''
         super().__init__()
+        if xs:
+            self.insert_list(xs)
 
     def __repr__(self):
         '''
@@ -63,12 +65,12 @@ class BST(BinaryTree):
         '''
         ret = True
         if node.left:
-            if node.value >= node.left.value:
+            if node.value >= BST.find_smallest(node.left)
                 ret &= BST._is_bst_satisfied(node.left)
             else:
                 ret = False
         if node.right:
-            if node.value <= node.right.value:
+            if node.value <= BST.find_largest(node.right):
                 ret &= BST._is_bst_satisfied(node.right)
             else:
                 ret = False
@@ -147,7 +149,15 @@ class BST(BinaryTree):
         Implement this function.
         '''
         
-        assert node is 
+        assert node is not None
+        if node.value == value:
+            return True
+        if node.value > value:
+            BST._find(value, node.left)
+        if node.value < value:
+            BST._find(value, node.right)
+        else:
+            return False
 
     def find_smallest(self):
         '''
