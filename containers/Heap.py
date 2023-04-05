@@ -24,7 +24,11 @@ class Heap(BinaryTree):
         If xs is a list (i.e. xs is not None),
         then each element of xs needs to be inserted into the Heap.
         '''
-
+        self.root = None
+        self.num_nodes = 0
+        #if xs:
+            #add sometjing hjere 
+    
     def __repr__(self):
         '''
         Notice that in the BinaryTree class,
@@ -59,7 +63,14 @@ class Heap(BinaryTree):
         FIXME:
         Implement this method.
         '''
-
+        ret = True
+        if node.left:
+            ret &= node.value <= node.left.value
+            ret &= Heap._is_heap_satisfied(node.left)
+        if node.right:
+            ret &= node.value <= node.right.value
+            ret &= Heap._is_heap_satisfied(node.right)
+        return ret
     def insert(self, value):
         '''
         Inserts value into the heap.
@@ -79,7 +90,28 @@ class Heap(BinaryTree):
         Create a @staticmethod helper function,
         following the same pattern used in the BST and AVLTree insert functions.
         '''
+        self.num_nodes += 1
+        binary_str = bin(self.num_nodes)[3:]
 
+        if self.root is None:
+            self.root = Node(value)
+        else:
+            Heap._insert(self.root, value, binary_str)
+    
+    @staticmethod
+    def _insert(node, value, binary_str):
+        if binary_str[0] == '0':
+            node.left = Node(value)
+        else:
+            Heap._insert(node.left, value, binary_str[1:])
+        if node.value > node.left.value:
+            node.value, node.left.value = node.left.value, node.value
+        if binary_str[0] == '1':
+            node.right = Node(value)
+        else:
+            Heap._insert(node.right, value, binary_str[1:])
+        if node.value > node.right.value:
+            node.value, node.right.value = node.right.value, node.value
     def insert_list(self, xs):
         '''
         Given a list xs, insert each element of xs into self.
@@ -87,6 +119,8 @@ class Heap(BinaryTree):
         FIXME:
         Implement this function.
         '''
+        for x in xs:
+            self.insert(x)
 
     def find_smallest(self):
         '''
